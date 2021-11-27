@@ -5,6 +5,6 @@ const { crearRoot } = require('../controllers/Root.controllers')
 
 
 router.post('/crear', RootCtrl.crearRoot)
-//router.post('/login', RootCtrl.Login)
+router.post('/login', RootCtrl.Login)
 
 module.exports = router

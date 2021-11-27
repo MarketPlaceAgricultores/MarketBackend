@@ -38,9 +38,49 @@ RootCtrl.crearRoot = async(req, res)=>{
 
         })
 
-    } 
+    }
+    
 
 
 }
+
+
+RootCtrl.Login = async (req, res)=>{
+
+    const {correo, contrasena} = req.body;
+    const root = await Root.findOne({correo: correo})
+    
+    if(!root){
+
+        return res.json({
+            mensaje: 'Correo incorrecto'
+        })
+    }
+
+    const match = await bcrypt.compare(contrasena, root.contrasena)
+
+    if(match){
+
+        const token = jwt.sign({_id:root.id}, 'Secreta')
+        res.json({
+
+            mensaje: 'Bienvenido',
+            id: root._id,
+            nombre: root.nombre,
+            token
+
+        })
+
+    }
+    else{
+
+        res.json({
+
+            mensaje: 'Contraseña incorrecta'
+        })
+    }
+
+}
+
 
 module.exports = RootCtrl
