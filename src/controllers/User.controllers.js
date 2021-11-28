@@ -2,15 +2,15 @@
 const UserCtrl = {}
 const bcrypt = require('bcryptjs')
 const jwt = require ('jsonwebtoken')
-//const { Schema } = require('mongoose')
+const { Schema } = require('mongoose')
 const User= require ('../models/User.models')
 
 UserCtrl.crear = async (req, res )=>{
 
-    const {nombres, apellidos, correo, direccion, ciudad, telefono} = req.body;
+    const {nombres, apellidos, correo, direccion, ciudad, telefono, contrasena} = req.body;
 
     const NuevoUser = new User({
-        nombres, apellidos, correo, direccion, ciudad, telefono
+        nombres, apellidos, correo, direccion, ciudad, telefono, contrasena
     })
 
 
@@ -26,7 +26,6 @@ UserCtrl.crear = async (req, res )=>{
 
 }
 
-
 UserCtrl.Login = async (req, res)=>{
 
     const {correo, contrasena} = req.body;
@@ -38,8 +37,12 @@ UserCtrl.Login = async (req, res)=>{
             mensaje: 'Correo incorrecto'
         })
     }
+    
 
     const match = await bcrypt.compare(contrasena, user.contrasena)
+
+    console.log(contrasena)
+    console.log(user.contrasena)
 
     if(match){
 
@@ -62,6 +65,30 @@ UserCtrl.Login = async (req, res)=>{
         })
     }
 
+
+}
+
+
+UserCtrl.Listar = async (req, res)=>{
+
+    const respuesta = await User.find()
+    res.json(respuesta)
+
+}
+
+UserCtrl.ListarId = async (req, res)=>{
+
+    const id = req.params.id;
+    const respuesta = await User.findOne({_id:id})
+    res.json(respuesta)
+
+}
+
+UserCtrl.CiudadDeUnVendedor = async (req, res)=>{
+
+    const ciudad = req.params.ciudad;
+    const respuesta = await User.find({_ciudad: ciudad});
+    res.json (respuesta)
 }
 
 

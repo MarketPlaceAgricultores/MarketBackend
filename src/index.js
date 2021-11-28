@@ -14,6 +14,7 @@ app.use(cors({origen:'*'}));
 
 app.use('/root', require ('./routes/Root.routes'))
 app.use('/user', require('./routes/User.routes'))
+app.use('/product', require('./routes/Product.routes'))
 
 //PUERTO
 

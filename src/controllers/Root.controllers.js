@@ -6,7 +6,7 @@ const jwt = require ('jsonwebtoken')
 const { Schema } = require('mongoose')
 
 
-RootCtrl.crearRoot = async(req, res)=>{
+RootCtrl.crear = async(req, res)=>{
 
     const {nombre, correo, contrasena} = req.body;
 
