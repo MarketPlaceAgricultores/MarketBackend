@@ -41,8 +41,8 @@ UserCtrl.Login = async (req, res)=>{
 
     const match = await bcrypt.compare(contrasena, user.contrasena)
 
-    console.log(contrasena)
-    console.log(user.contrasena)
+    //console.log(contrasena)
+    //console.log(user.contrasena)
 
     if(match){
 
@@ -87,8 +87,9 @@ UserCtrl.ListarId = async (req, res)=>{
 UserCtrl.CiudadDeUnVendedor = async (req, res)=>{
 
     const ciudad = req.params.ciudad;
-    const respuesta = await User.find({_ciudad: ciudad});
+    const respuesta = await User.find({ciudad: ciudad});
     res.json (respuesta)
+
 }
 
 

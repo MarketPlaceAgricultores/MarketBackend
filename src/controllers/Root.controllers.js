@@ -58,6 +58,8 @@ RootCtrl.Login = async (req, res)=>{
     }
 
     const match = await bcrypt.compare(contrasena, root.contrasena)
+    console.log(contrasena)
+    console.log(root.contrasena)
 
     if(match){
 

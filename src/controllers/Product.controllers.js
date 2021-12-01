@@ -34,7 +34,7 @@ ProductCtrl.Listar = async (req, res)=>{
 ProductCtrl.NombreProducto = async (req, res)=>{
 
     const nombre = req.params.nombre;
-    const respuesta = await Product.find({_nombre: nombre});
+    const respuesta = await Product.find({nombre: nombre});
     res.json (respuesta)
 }
 
