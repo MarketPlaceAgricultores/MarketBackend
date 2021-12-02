@@ -38,5 +38,27 @@ ProductCtrl.NombreProducto = async (req, res)=>{
     res.json (respuesta)
 }
 
+ProductCtrl.editarProducto = async (req, res)=>{
+
+    const id = req.params.id   
+    await Product.findByIdAndUpdate({_id: id}, req.body)
+
+
+    res.json({
+
+        mensaje: 'Producto actualizado'
+    })
+}
+
+ProductCtrl.eliminarProducto = async (req, res)=>{
+
+    const id =req.params.id;
+    await Product.findByIdAndRemove({_id: id})
+    res.json({
+        
+        mensaje: 'Producto eliminado'
+    })
+}
+
 
 module.exports = ProductCtrl
