@@ -11,7 +11,8 @@ ProductCtrl.crear = async (req,res)=>{
         nombre,
         descripcion,
         unidadMedida,
-        precioXunidad
+        precioXunidad,
+        urlImagen
 
     })
 
