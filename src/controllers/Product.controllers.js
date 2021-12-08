@@ -4,7 +4,7 @@ const Product = require ('../models/Product.models')
 
 ProductCtrl.crear = async (req,res)=>{
 
-    const {nombre, descripcion, unidadMedida, precioXunidad} = req.body;
+    const {nombre, descripcion, unidadMedida, precioXunidad, urlImagen} = req.body;
 
     const NuevoProduct = new Product({
 
